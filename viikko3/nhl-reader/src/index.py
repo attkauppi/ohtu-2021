@@ -22,6 +22,8 @@ def main():
 
     print("Oliot:")
 
+    players.
+
     for player in players:
         print(player)
 
