@@ -1,6 +1,7 @@
 *** Settings ***
 Library  SeleniumLibrary
 Library  ../AppLibrary.py
+Test Setup  Setup chromedriver
 
 *** Variables ***
 ${SERVER}  localhost:5000
@@ -9,6 +10,7 @@ ${DELAY}  0.5 seconds
 ${HOME URL}  http://${SERVER}
 ${LOGIN URL}  http://${SERVER}/login
 ${REGISTER URL}  http://${SERVER}/register
+${EXECDIR}  /usr/local/bin/chromedriver
 
 *** Keywords ***
 Open And Configure Browser
@@ -24,3 +26,9 @@ Main Page Should Be Open
 
 Go To Login Page
     Go To  ${LOGIN URL}
+
+Create Webdriver    Chrome    executable_path=C:/WebDrivers/chromedriver.exe
+
+Setup chromedriver
+    Set Environment Variable  chrome  ${EXECDIR}
+
