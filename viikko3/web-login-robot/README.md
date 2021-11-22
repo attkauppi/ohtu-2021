@@ -13,3 +13,7 @@ Nyt ollessamme poetry shellissä voimme ajaa seuraavan komennon, joka asettaa ch
 ```
 webdrivermanager chrome --linkpath AUTO
 ```
+
+## resources.robot
+
+* [SeleniumLibraryn avainsanat](https://robotframework.org/SeleniumLibrary/SeleniumLibrary.html)

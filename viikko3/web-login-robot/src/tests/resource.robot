@@ -10,7 +10,6 @@ ${DELAY}  0.5 seconds
 ${HOME URL}  http://${SERVER}
 ${LOGIN URL}  http://${SERVER}/login
 ${REGISTER URL}  http://${SERVER}/register
-${EXECDIR}  /home/ari/bin/chromedriver
 
 *** Keywords ***
 Open And Configure Browser
@@ -26,5 +25,11 @@ Main Page Should Be Open
 
 Go To Login Page
     Go To  ${LOGIN URL}
+
+Go To Main Page
+    Go To  ${HOME_URL}
+
+Register Page Should Be Open
+    Page Should Contain  Password confirmation
 
 
