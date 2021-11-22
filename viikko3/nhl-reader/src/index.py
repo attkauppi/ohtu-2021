@@ -20,9 +20,11 @@ def main():
 
         players.append(player)
 
-    print("Oliot:")
+    print(sorted(players))
+    print(players.sort())
+    # print(players)
 
-    players.
+
 
     for player in players:
         print(player)
