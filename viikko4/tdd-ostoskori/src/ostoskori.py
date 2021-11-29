@@ -44,8 +44,16 @@ class Ostoskori:
         return None
 
     def poista_tuote(self, poistettava: Tuote):
-        # poistaa tuotteen
-        pass
+        tuote_korissa = self.hae_ostoksista(poistettava)
+        if tuote_korissa is not None:
+            ostos = self.ostokset()[tuote_korissa]
+
+            if ostos.lukumaara() > 1:
+                ostos.muuta_lukumaaraa(-1)
+                self.ostokset_lista[tuote_korissa] = ostos
+
+            else:
+                del self.ostokset_lista[tuote_korissa]
 
     def tyhjenna(self):
         pass
