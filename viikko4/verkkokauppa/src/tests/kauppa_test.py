@@ -215,6 +215,19 @@ class TestKauppa(unittest.TestCase):
             self.kauppa._kaupan_tili,
             5
         )
+    
+    def test_poista_korista_poistaa_tuotteen_ostoskorista(self):
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.poista_korista(1)
+
+        self.assertEqual(0, len(self.kauppa._ostoskori._tuotteet))
+
+        tuote = self._varasto_hae_tuote(1)
+        self.varasto_mock.palauta_varastoon.called_with(
+            tuote
+        )
+
 
 
 
