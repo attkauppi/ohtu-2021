@@ -6,6 +6,7 @@ class Pankki:
         self._kirjanpito = kirjanpito
 
     def tilisiirto(self, nimi, viitenumero, tililta, tilille, summa):
+        print("Viitenumero: ", viitenumero)
         self._kirjanpito.lisaa_tapahtuma(
             f"tilisiirto: tililtä {tililta} tilille {tilille} viite {viitenumero} summa {summa}e"
         )

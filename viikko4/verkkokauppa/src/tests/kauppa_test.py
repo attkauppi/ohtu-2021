@@ -121,6 +121,8 @@ class TestKauppa(unittest.TestCase):
         # Ostokset
         # self.kauppa._alusta_tuotteet()
         self.kauppa.aloita_asiointi()
+        # Ostoskorin hinnan pitäisi vastata vain 1 kpl tuotetta 1,
+        # sillä tuote 3 on loppu.
         self.kauppa.lisaa_koriin(1)
         self.kauppa.lisaa_koriin(3)
         self.kauppa.tilimaksu("pekka", "12345")
@@ -133,3 +135,95 @@ class TestKauppa(unittest.TestCase):
             self.kauppa._kaupan_tili,
             5
         )
+    
+    def test_aloita_asiointi_nollaa_edellisen_ostoksen_tiedot(self):
+        # Ostos aluksi
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(1)
+        self.kauppa.tilimaksu("pekka", "12345")
+
+        # Aloitetaan asiointi uudelleen
+        self.kauppa.aloita_asiointi()
+        self.kauppa.lisaa_koriin(2)
+
+        # Maksu
+        self.kauppa.tilimaksu("pekka", "12345")
+
+        # Tilisiirto oikeilla parametreilla
+        self.pankki_mock.tilisiirto.assert_called_with(
+            "pekka",
+            ANY,
+            "12345",
+            self.kauppa._kaupan_tili,
+            2
+        )
+    
+    def test_pyydetaan_uusi_viite_jokaiseen_maksuun(self):
+        # Uusi viitegeneraattori
+        viitegeneraattori_mock = Mock(wraps=Viitegeneraattori())
+
+        # otetaan toteutukset käyttöön
+        kauppa = Kauppa(self.varasto_mock, self.pankki_mock, viitegeneraattori_mock)
+        
+        # Ostokset
+        kauppa.aloita_asiointi()
+        kauppa.lisaa_koriin(1)
+        kauppa.tilimaksu("pekka", "12345")
+
+        # Viitegeneraattoria kutsuttu kerran
+        self.assertEqual(viitegeneraattori_mock.uusi.call_count, 1)
+
+        # Uudet ostokset
+        kauppa.aloita_asiointi()
+        kauppa.lisaa_koriin(2)
+        kauppa.tilimaksu("pekka", "12345")
+
+        # Viitegeneraattoria kutsuttu 2 kertaa
+        self.assertEqual(viitegeneraattori_mock.uusi.call_count, 2)
+    
+    def test_kaytetaan_perakkaisten_viitekutsujen_arvoja(self):
+        viitegeneraattori_mock = Mock()
+
+        # määritellään että metodi palauttaa ensimmäisellä kutsulla 1, toisella 2 ja kolmannella 3
+        viitegeneraattori_mock.uusi.side_effect = [1, 2, 3]
+
+        kauppa = Kauppa(self.varasto_mock, self.pankki_mock, viitegeneraattori_mock)
+
+        kauppa.aloita_asiointi()
+        kauppa.lisaa_koriin(1)
+        kauppa.tilimaksu("pekka", "12345")
+
+        # Käytössä ensimmäinen viite
+        self.pankki_mock.tilisiirto.assert_called_with(
+            "pekka",
+            1,
+            "12345",
+            self.kauppa._kaupan_tili,
+            5
+        )
+
+        # Toinen ostos
+        kauppa.aloita_asiointi()
+        kauppa.lisaa_koriin(1)
+        kauppa.tilimaksu("pekka", "12345")
+
+        # Käytössä ensimmäinen viite
+        self.pankki_mock.tilisiirto.assert_called_with(
+            "pekka",
+            2,
+            "12345",
+            self.kauppa._kaupan_tili,
+            5
+        )
+
+
+
+
+
+
+
+
+
+
+
+
