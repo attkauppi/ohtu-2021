@@ -1,6 +1,6 @@
 from tuote import Tuote
 from ostos import Ostos
-
+import logging
 class Ostoskori:
     def __init__(self):
         # ostoskori tallettaa Ostos-oliota, yhden per korissa oleva Tuote
@@ -22,7 +22,26 @@ class Ostoskori:
     def lisaa_tuote(self, lisattava: Tuote):
         # lisää tuotteen
         ostos = Ostos(lisattava)
-        self.ostokset_lista.append(ostos)
+
+        tuote_korissa = self.hae_ostoksista(ostos)
+        if tuote_korissa is not None:
+            ostos_korissa = self.ostokset_lista[tuote_korissa]
+            ostos_korissa.muuta_lukumaaraa(1)
+            self.ostokset_lista[tuote_korissa] = ostos_korissa
+        else:
+            self.ostokset_lista.append(ostos)
+    
+    def valitse_ensimmainen(self, iterable, default=None):
+        for item in iterable:
+            return item
+        return default
+
+    def hae_ostoksista(self, tuote):
+
+        for count, ele in enumerate(self.ostokset()):
+            if ele.tuotteen_nimi() == tuote.tuotteen_nimi():
+                return count
+        return None
 
     def poista_tuote(self, poistettava: Tuote):
         # poistaa tuotteen
