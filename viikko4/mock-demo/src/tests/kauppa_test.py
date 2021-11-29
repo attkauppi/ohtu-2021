@@ -50,6 +50,7 @@ class TestKauppa(unittest.TestCase):
         # katsotaan, että ensimmäisen ja toisen parametrin arvo on oikea
         pankki_mock.maksa.assert_called_with("1111", 10, ANY)
 
+
     def test_kaytetaan_maksussa_palautettua_viitetta(self):
         pankki_mock = Mock()
         viitegeneraattori_mock = Mock()
@@ -65,7 +66,10 @@ class TestKauppa(unittest.TestCase):
         kauppa.maksa("1111")
 
         # katsotaan, että kolmannen parametrin arvo on oikea
-        pankki_mock.maksa.assert_called_with(ANY, ANY, 55)
+        # pankki_mock.maksa.assert_called_with(ANY, ANY, 55)
+        # FIXME: Poista tämä. Yläpuolella oleva toimii.
+        # tehtävänä oli rikkoa.
+        pankki_mock.maksa.assert_called_with(ANY, ANY, 1000)
 
     def test_pyydetaan_uusi_viite_jokaiseen_maksuun(self):
         pankki_mock = Mock()
