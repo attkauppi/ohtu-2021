@@ -16,11 +16,21 @@ class TestOstoskori(unittest.TestCase):
 
         self.kori.lisaa_tuote(maito)
         exp_result = 1
-        self.assertEqual(exp_result, len(self.kori.ostokset))
+        self.assertEqual(exp_result, len(self.kori.ostokset()))
     
     def test_yhden_tuotteen_lisaamisen_jalkeen_korin_hinta_tuotteen_hinta(self):
         maito = Tuote("Maito", 3)
 
         self.kori.lisaa_tuote(maito)
-        
+
         self.assertEqual(3, self.kori.hinta())
+    
+        
+    def test_kahden_eri_tuotteen_lisaamisen_jalkeen_korissa_on_kaksi_tavaraa(self):
+        maito = Tuote("Maito", 3)
+        leipa = Tuote("Leipä", 2)
+
+        self.kori.lisaa_tuote(maito)
+        self.kori.lisaa_tuote(leipa)
+        
+        self.assertEqual(2, len(self.kori.ostokset()))
