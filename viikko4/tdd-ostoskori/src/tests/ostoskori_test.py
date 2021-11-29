@@ -84,7 +84,7 @@ class TestOstoskori(unittest.TestCase):
         self.assertIsInstance(ostos1, Ostos)
         self.assertIsInstance(ostos2, Ostos)
 
-    # Step 10
+    # Step 11
     def test_kahden_saman_tuotteen_lisaamisen_jalkeen_ostoskori_sisaltaa_yhden_ostoksen(self):
         maito = Tuote("Maito", 3)
         self.kori.lisaa_tuote(maito)
@@ -93,7 +93,18 @@ class TestOstoskori(unittest.TestCase):
         self.assertEqual(1, len(self.kori.ostokset()))
 
         ostos1 = self.kori.ostokset()[0]
+
+    # Step 12
+    def test_kahden_saman_tuotteen_lisaamisen_jalkeen_ostoskori_sisaltaa_tuotteen_samalla_nimella_ja_lukumaaralla_2(self):
+        maito = Tuote("Maito", 3)
+        self.kori.lisaa_tuote(maito)
+        self.kori.lisaa_tuote(maito)
+
+        ostos1 = self.kori.ostokset()[0]
+
         self.assertEqual(2, ostos1.lukumaara())
+        self.assertEqual(maito.nimi(), ostos1.tuotteen_nimi())
+
 
 
 
