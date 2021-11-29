@@ -44,13 +44,15 @@ class Ostoskori:
         return None
 
     def poista_tuote(self, poistettava: Tuote):
-        tuote_korissa = self.hae_ostoksista(poistettava)
-        if tuote_korissa is not None:
-            ostos = self.ostokset()[tuote_korissa]
+        ostos = Ostos(poistettava)
 
-            if ostos.lukumaara() > 1:
-                ostos.muuta_lukumaaraa(-1)
-                self.ostokset_lista[tuote_korissa] = ostos
+        tuote_korissa = self.hae_ostoksista(ostos)
+        if tuote_korissa is not None:
+            ostos_korissa = self.ostokset_lista[tuote_korissa]
+
+            if ostos_korissa.lukumaara() > 1:
+                ostos_korissa.muuta_lukumaaraa(-1)
+                self.ostokset_lista[tuote_korissa] = ostos_korissa
 
             else:
                 del self.ostokset_lista[tuote_korissa]
