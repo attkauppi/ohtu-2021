@@ -3,7 +3,11 @@ OLETUSKASVATUS = 5
 
 
 class IntJoukko:
-    def __init__(self, kapasiteetti=None, kasvatuskoko=None):
+    def __init__(self, kapasiteetti:int=KAPASITEETTI, kasvatuskoko:int=OLETUSKASVATUS):
+
+        self.kapasiteetti = kapasiteetti
+
+
         if kapasiteetti is None:
             self.kapasiteetti = KAPASITEETTI
         elif not isinstance(kapasiteetti, int) or kapasiteetti < 0:
