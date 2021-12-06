@@ -1,5 +1,6 @@
 from operator import attrgetter
 
+# Tämä nyt oli kaikkea paitsi hyvä ratkaisu :'D
 class Score:
     def __init__(self, player1, player2):    
         self.players = [player1, player2]
@@ -32,7 +33,7 @@ class Score:
             return self.endgame_scores[point_difference]
         # Not deuce
         return self.get_endgame_score_string(point_difference) + player_with_higher_score.player_name
-
+    
     def get_non_endgame_score(self, point_difference):
         scores = list(map(lambda p: self.non_endgame_scores[p.get_points()], self.players))
         # If points equal, give the first score
@@ -42,7 +43,7 @@ class Score:
         return "-".join(scores)
     
     def is_endgame_score(self):
-        if any(map(lambda p: p.has_four_or_more_points(), self.players)):
+        if any(map(lambda p: p.get_points() >= 4, self.players)):
             return True
         return False
     
