@@ -1,10 +1,10 @@
 class Player:
-    def __init__(self, player_name, score=0):
+    def __init__(self, player_name, points=0):
         self.player_name = player_name
-        self.score = score
+        self.points = points
     
-    def won_point(self):
-        self.score += 1
+    def add_point(self):
+        self.points += 1
 
-    def get_score(self):
-        return self.score
+    def get_points(self):
+        return self.points
