@@ -31,9 +31,10 @@ class TennisGame:
         elif self.m_score1 >= 4 or self.m_score2 >= 4:
             minus_result = self.m_score1 - self. m_score2
 
-            # Jos erotus 1, advantage
+            # Jos erotus 1, advantage p1
             if minus_result == 1:
                 score = "Advantage player1"
+            # Jos erotus -1, advantage p2
             elif minus_result == -1:
                 score = "Advantage player2"
             # Jos erotus yli 2, toinen voittaa
@@ -50,6 +51,8 @@ class TennisGame:
                     score = score + "-"
                     temp_score = self.m_score2
 
+                # If i == 1, kirjoittaa scoreen m_score 1:sen
+                # Muuten kirjoittaa scoreen m_score 2:sen
                 if temp_score == 0:
                     score = score + "Love"
                 elif temp_score == 1:
