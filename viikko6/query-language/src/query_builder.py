@@ -16,4 +16,7 @@ class QueryBuilder:
     def playsIn(self, team):
         return QueryBuilder(And(PlaysIn(team), self.query_object))
     
+    def oneOf(self, m1, m2):
+        return QueryBuilder(Or(m1, m2))
+    
     

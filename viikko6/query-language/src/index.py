@@ -27,13 +27,30 @@ def main():
     query = QueryBuilder()
 
     # matcher = query.playsIn("NYR").build()
+    # matcher = (
+    #     query
+    #         .playsIn("NYR")
+    #         .hasAtLeast(5, "goals")
+    #         .hasFewerThan(10, "goals")
+    #         .build()
+    # )
+
     matcher = (
         query
-            .playsIn("NYR")
-            .hasAtLeast(5, "goals")
-            .hasFewerThan(10, "goals")
-            .build()
+            .oneOf(
+            query.playsIn("PHI")
+                .hasAtLeast(10, "assists")
+                .hasFewerThan(5, "goals")
+                .build(),
+            query.playsIn("EDM")
+                .hasAtLeast(40, "points")
+                .build()
+        )
+        .build()
     )
+
+
+    # matcher = query.oneOf(m1, m2).build()
     # matcher = query.playsIn("NYR").build()#.playsIn("NYR").build()
 
 
