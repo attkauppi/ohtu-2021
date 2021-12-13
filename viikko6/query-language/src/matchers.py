@@ -1,3 +1,10 @@
+class Query:
+    def __init__(self):
+        self.query = []
+    
+    def matches(self):
+        return True
+
 class All:
     def __init__(self):
         pass
@@ -41,7 +48,6 @@ class HasAtLeast:
 
     def matches(self, player):
         player_value = getattr(player, self._attr)
-
         return player_value >= self._value
 class HasFewerThan:
     def __init__(self, value, attr):
@@ -54,7 +60,8 @@ class HasFewerThan:
         return player_value < self._value
 
 class Not:
-    def __init__(self, matcher):
+    def __init__(self, query, matcher):
+        self.query = query
         self._matcher = matcher
     
     def matches(self, player):
