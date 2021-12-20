@@ -1,0 +1,13 @@
+# Referaatti Tero Huomon kandidaatintutkielmasta
+
+[Linkki Tero Huomon kandidaatintutkielmaan](https://www.cs.helsinki.fi/u/mluukkai/ohtu/huomo-kandi.pdf)
+
+Tero Huomo käsittelee opinnäytetyössään erityisesti sitä, miten ketterän ohjelmistokehityksen käytänteet on mahdollista huomioida ohjelmistoarkkitehtuuri ja arkkitehtuurisuunnitteluun liittyvä problematiikka. Huomo käsittelee eräitä kritiikkiä herättäneitä käytänteitä ketterissä menetelmissä, kuten muokkaavan työn arvostuksen refaktoroinnin muodossa. Näiden käytänteiden on ajateltu voivan johtaa tietyissä tilanteissa ongelmiin, mikäli refaktoroinnin kohteeksi otetaan järjestelmän laajuinen kokonaisuus. Vastaavalla tavalla Huomo mainitsee, että Extreme Programmigin painottama työn minimointi saattaa joskus aiheuttaa ongelmia, mikäli työtä minimoidaan jättämällä huomiotta vaatimukset, joita asiakas ei välttämättä ole osannut määritellä, mutta jotka todennäköisesti kuitenkin tulisi kuitenkin huomioida kehitystyössä.
+
+Käytänteinä, jotka voivat helpottaa arkkitehtuurisuunnittelun sisällyttämistä ketteriin menetelmiin, Huomo käsittelee esimerkiksi Scrumissa Sprint 0:n käsitteen. Sprint 0:ssa on tarkoitus tehdä projektin alkuun saamisen kannalta tärkeitä tehtäviä, kuten konfiguroida työntekijöiden työkoneet sekä saatetaan tehdä etukäteissuunnittelua toteutettavan järjestelmän rakenteesta eli arkkitehtuurisuunnittelua melko korkealla tasolla. Lähestymistavassa kuitenkin tavoitteena on, ettei luotava arkkitehtuuri välttämättä ole luonteeltaan pysyvä ja sitä saatetaan muuttaa myöhemmissä vaiheissa. Toisaalta tällaisen etukäteistyön ongelmina Huomo tuo esiin siitä esitettyjä näkemyksiä, joidan mukaan Sprint 0 ei ole osa ketterää ohjelmistokehitystä sekä voi johtaa liian lopulliseen järjestelmän rakenteeseen.
+
+Toisena lähestymistapana Huomo tuo esiin tavan eriyttää arkkitehtuuriprosessi. Näihin liittyvät ongelmat ovat kuitenkin samankaltaisia Sprint 0:ssa eli tehdyt arkkitehtuuriratkaisut eivät välttämättä huomioi riittävästi asiakkaan toiveita.
+
+Eräs Huomon esiintuoma lähestymistapa ovat myös ns. Suunnittelupiikit, joiden tarkoituksena on huomioida järjestelmän laajennuksista aiheutuvia ongelmia sekä muita vastaavia näkökulmia. Tämä lähestymistapa esimerkiksi on käypä esimerkki ketteristä menetelmistä siinä mielessä, että ainakin Extreme Programmingissa tällainen työskentelytapa on hyväksytään.
+
+Arkkitehtuuritarinoissa puolestaan pyritään määrittelemään järjestelmän ei-toiminnallisia vaatimuksia, jotka liittyvät järjestelmän teknisiin ja rakenteellisiin puoliin. Näin pyritään huomioimaan sellaiset seikat, jotka eivät välttämättä näy asiakkaalle, mutta joiden suunnitteluun on kuitenkin varattava riittävästi aikaa, jotta toteutuksesta saadaan onnistunut. 
