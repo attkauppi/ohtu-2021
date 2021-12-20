@@ -1,14 +1,17 @@
 from tuomari import Tuomari
 from tekoaly_parannettu import TekoalyParannettu
+from kps_tekoaly import KPSTekoaly
 
+class KPSParempiTekoaly(KPSTekoaly):
 
-class KPSParempiTekoaly:
+    def __init__(self):
+        self.tekoaly = TekoalyParannettu(10)
+
     def pelaa(self):
         tuomari = Tuomari()
-        tekoaly = TekoalyParannettu(10)
 
         ekan_siirto = input("Ensimmäisen pelaajan siirto: ")
-        tokan_siirto = tekoaly.anna_siirto()
+        tokan_siirto = self.tekoaly.anna_siirto()
 
         print(f"Tietokone valitsi: {tokan_siirto}")
 
@@ -17,13 +20,17 @@ class KPSParempiTekoaly:
             print(tuomari)
 
             ekan_siirto = input("Ensimmäisen pelaajan siirto: ")
-            tokan_siirto = tekoaly.anna_siirto()
+            tokan_siirto = self.tekoaly.anna_siirto()
 
             print(f"Tietokone valitsi: {tokan_siirto}")
-            tekoaly.aseta_siirto(ekan_siirto)
+            self.tekoaly.aseta_siirto(ekan_siirto)
 
         print("Kiitos!")
         print(tuomari)
+    
+    def aseta_siirto(self, ekan_siirto):
+        self.tekoaly.aseta_siirto(ekan_siirto)
+    
+    def _toisen_siirto(self, ensimmaisen_siirto):
+        return self.tekoaly.anna_siirto()
 
-    def _onko_ok_siirto(self, siirto):
-        return siirto == "k" or siirto == "p" or siirto == "s"
